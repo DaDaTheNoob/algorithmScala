@@ -1,4 +1,5 @@
 object FindMaximunSubarray_dc {
+  // 分治法, 时间代价O(n^2)
   def sumArray(a: Int, b: Int): Int = a + b
   def findCrossingSubarray(A: Array[Int]): (Array[Int], Int) = {
     val mid = A.length / 2
@@ -17,5 +18,13 @@ object FindMaximunSubarray_dc {
       else rightRes
     }
     else (A, A(0))
+  }
+}
+
+object FindMaximunSubarray {
+  // 联机算法, 时间代价O(n)
+  def maxSubArray(A: Array[Int]): Int = {
+    val maxNum = math.min(0, A.max)
+    A.scanLeft(0)((a, b) => math.max(maxNum, a + b)).tail.max
   }
 }
